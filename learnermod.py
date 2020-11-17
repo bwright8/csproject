@@ -89,9 +89,9 @@ def supportvector_classifier_for_digit(d,Xp,y):
 
     return w_opt
     
-#gnb = GauassianNB()
-#nb_classifier = gnb.fit(Xp,y)
-#nb_classifier.predict(Xp[0])
+gnb = GaussianNB()
+nb_classifier = gnb.fit(Xp,y)
+nb_classifier.predict(Xp[0])
 
 """from article https://scikit-learn.org/stable/modules/naive_bayes.html print("Number of mislabeled points out of a total %d points : %d"
 ...       % (X_test.shape[0], (y_test != y_pred).sum()))"""
