@@ -11,7 +11,7 @@ for x in X:
     Xp.append(x.flatten())
 
 
-Xp = numpy.matrix(Xp)/256.0
+Xp = numpy.matrix(Xp)/255.0
 
 
 U,s,VT = numpy.linalg.svd(Xp,full_matrices = False)
@@ -75,7 +75,7 @@ def supportvector_classifier_for_digit(d,Xp,y):
 
     n_train = len(yp)
     X = Xp
-    #X = Xp/256.0
+    #X = Xp/255.0
 
     xt = numpy.hstack((X,numpy.ones((n_train,1))))
 
