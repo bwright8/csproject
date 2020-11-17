@@ -1,5 +1,6 @@
 import numpy, idx2numpy
 from sklearn.svm import LinearSVC
+from sklearn.naive_bayes import GaussianNB
 
 y = idx2numpy.convert_from_file("train-labels-idx1-ubyte")
 X = idx2numpy.convert_from_file('train-images-idx3-ubyte')
@@ -10,8 +11,10 @@ Xp = []
 for x in X:
     Xp.append(x.flatten())
 
+n_train = len(y)
 
 Xp = numpy.matrix(Xp)/255.0
+Xp = numpy.hstack((Xp,numpy.ones((n_train,1))))
 
 
 U,s,VT = numpy.linalg.svd(Xp,full_matrices = False)
@@ -56,7 +59,7 @@ def ridge_classifier_for_digit(d,Xp,XpTXp,y,lam):
             yp.append(-1)
 
 
-    XR = numpy.linalg.inv(XpTXp + lam*numpy.identity(784))
+    XR = numpy.linalg.inv(XpTXp + lam*numpy.identity(784+1))
     w = XR@(Xp.T)@yp
 
 
@@ -77,7 +80,8 @@ def supportvector_classifier_for_digit(d,Xp,y):
     X = Xp
     #X = Xp/255.0
 
-    xt = numpy.hstack((X,numpy.ones((n_train,1))))
+    #xt = numpy.hstack((X,numpy.ones((n_train,1))))
+    xt = Xp
 
     clf = LinearSVC(random_state=1, tol=.001,max_iter = 100000)
     clf.fit(xt, yp)
@@ -85,3 +89,9 @@ def supportvector_classifier_for_digit(d,Xp,y):
 
     return w_opt
     
+#gnb = GauassianNB()
+#nb_classifier = gnb.fit(Xp,y)
+#nb_classifier.predict(Xp[0])
+
+"""from article https://scikit-learn.org/stable/modules/naive_bayes.html print("Number of mislabeled points out of a total %d points : %d"
+...       % (X_test.shape[0], (y_test != y_pred).sum()))"""
