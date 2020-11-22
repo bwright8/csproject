@@ -1,10 +1,13 @@
 import numpy, idx2numpy
+import pandas as pd
 from sklearn.svm import LinearSVC
 from sklearn.naive_bayes import GaussianNB
 
 y = idx2numpy.convert_from_file("train-labels-idx1-ubyte")
 X = idx2numpy.convert_from_file('train-images-idx3-ubyte')
 
+X_test = idx2numpy.convert_from_file("t10k-images-idx3-ubyte")
+y_test = idx2numpy.convert_from_file("t10k-labels-idx1-ubyte")
 
 Xp = []
 
@@ -16,6 +19,15 @@ n_train = len(y)
 Xp = numpy.matrix(Xp)/255.0
 Xp = numpy.hstack((Xp,numpy.ones((n_train,1))))
 
+n_test = len(y_test)
+Xpt = []
+for x in X_test:
+    Xpt.append(x.flatten())
+
+Xpt = numpy.matrix(Xpt)/255.0
+Xpt = numpy.hstack((Xpt,numpy.ones((n_test,1))))
+
+
 
 U,s,VT = numpy.linalg.svd(Xp,full_matrices = False)
 
@@ -25,7 +37,7 @@ XpTXp = VT.T @ (numpy.diag(s)) @ VT
 print(XpTXp.shape)
 
 XpTXpi = numpy.linalg.inv(XpTXp)
-XpTXpiT = XpTXpi@(Xp.T)
+XpTXpiXT = XpTXpi@(Xp.T)
 
 
 def linear_classifier_for_digit(d,XpTXpiXT,y):
