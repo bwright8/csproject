@@ -28,7 +28,7 @@ Xpt = numpy.matrix(Xpt)/255.0
 Xpt = numpy.hstack((Xpt,numpy.ones((n_test,1))))
 
 
-
+"""
 U,s,VT = numpy.linalg.svd(Xp,full_matrices = False)
 
 
@@ -38,7 +38,8 @@ print(XpTXp.shape)
 
 XpTXpi = numpy.linalg.inv(XpTXp)
 XpTXpiXT = XpTXpi@(Xp.T)
-
+"""
+#uncomment when needed
 
 def linear_classifier_for_digit(d,XpTXpiXT,y):
 
