@@ -88,23 +88,29 @@ Further, the website hosting the data describes that the data from the trainnig 
 
 The datas are labelled according to the value of a digit the handwriter was instructed to write, making the dataset prime for analysis by supervised learning techniques. The question that was proposed for study was: Can the computer be trained to learn the (label) value of a handwritten digit from its IDX representation? The three algorithms that were used to approach this question were: 1. linear/ridge regression. 2. support vector machines. 3. neural networks. A brief overview of each mehtod is given in the following subsections. 
 
-\subsection{Regression}
+\subsection{Linear Regression}
 
 The idea of linear regression for binary classification is as follows: Given a set of training data $X$ with labels $y$, interpret the features as inputs and the labels as output. Then, compute the hyperplane represented by $w$ in the feature-label space that minimizes the sum of squares of the difference between the actual labels $y$ and the value of the hyperplane evaluated at each point of training data. Namely, $||Xw - y||^2_2$ is minimized. Now, each side of the hyperplane in the feature space corresponds to a predicted label for any input data. The hope is that because the squared-error is minimized that there are few misclassifications. 
 
 However, the model is biased because it assumes that labels can be predicted by a linear function. One way to try to reduce the bias is to introduce a regularization parameter $\lambda$ that tells the regresssion model to prefer $w$ with smaller coefficients. Namely, instead of minimizing $||Xw - y||^2_2$, we seek to minimize $||Xw - y||^2_2 + \lambda ||w||_2^2$. Both regularized (ridge) regression and standard linear regression have multiple algorithmic solutions, say, such as gradient descent, but they also have closed-form solutions, which were the solutions used in this project. Namely, for linear regression, the solution is $w = (X^TX)^{-1} X^T y$, and for ridge regression, we have $w = (X^TX + \lambda I)^{-1} X^T y$.
 
-\section{Headings: first level}
-\label{headings}
+\subsection{Support vectors} A support vector machine is similar to a regression model in the sense that we are looking for a hyperplane to separate data in the feature-label space, only now, we consider a different measure of inaccuracy of the model, that is, a different "loss" function. In what follows, the following loss function was used: $\mbox{max}(0,1-y_i (w^T X_i))^2$ where $y_i$ is $1$ or $-1$ if the datapoint $X_i$ respectively is or is not a certain digit, and so the expression the SVM algoritm tries to minimize is $$\frac{1}{60000} \sum_{i = 1}^{60000} \mbox{max}(0,1-y_i (w^T X_i))^2  + \lambda ||w||_2^2$$ where $\lambda > 0$ is some regularization parameter. 
 
-All headings should be lower case (except for first word and proper nouns),
-flush left, and bold.
+When the data is linearly seperable, $w$ can be understood at the hyperplane that separates the data that maximizes the margin between the hyperplane and the data. When the data is not seperable, a hyperplane is penalized by the above loss function for making a misclassification. 
 
-First-level headings should be in 12-point type.
+This algorithm that was implemented in this project to build the SVM classifier was the sklearn.svm.LinearSVC method. Basically, the algorithm is iterative; it makes an initial guess for the classifier, and then updates the guess based on a (subgradient) descent-style computation on the loss function. The algorithm terminates when losses of sequential guesses are within a certain distance threshold of each other. Details can be found in \url{https://www.csie.ntu.edu.tw/~cjlin/papers/liblinear.pdf}.
 
-\subsection{Headings: second level}
+\subsection{Neural Networks} A neural network is an organized collection of nodes arranged layers, the first layer being the input layer that takes the data to be classified. Data from one layer is then weighted and passed into each node in the next layer, where a certain nonlinearity is applied. Eventually, the final (output) layer outputs the predicted class of the data. 
 
-Second-level headings should be in 10-point type.
+The advantage of neural networks in a learning problem such as this one is that neural networks, given enough nodes on a bounded number of layers, can learn any function, meaning, they can have highly nonlinear decision boundaries. 
+
+For this project, the weights of the networks were trained by doing a stochastic-gradient-descent-type algorithm called "Adam." The essential difference between Adam and standard stochastic gradient descent through backpropogation - which updates weights in the network by utilizing the chain rule of calculus to compute the gradient of the loss function -  is that Adam uses different learning rates for each weight in the network and updates the weights at each iteration of the descent based on how quickly the network is learning the classifier. See, for example, \url{https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/} for a further explaination and see also the sklearn documentation for multilayered neural networks at \url{https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html}.
+
+\section{Results}
+
+\subsection{Linear Regression}
+
+A binary, linear classifier was trained on all training data for each digit between 0 and 9. A digit selector then takes an input data and checks which of the ten classifiers assigns the data the highest output norm and predicts the corresponding digit. This process is 82.38 percent accurate on the test data of 10,000 handwritten digits. One might wonder which digits are the hardest to distinguish, or if regularizing the digit classifiers improves performance. Well, it turns out the digit 5 was the easiest to classify with over 91 percent accuracy, and 1 was the hardest to classify with just over 88 percent accuracy.
 
 \subsubsection{Headings: third level}
 

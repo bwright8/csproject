@@ -81,7 +81,7 @@ def ridge_classifier_for_digit(d,Xp,XpTXp,y,lam):
 #rw = ridge_classifier_for_digit(0,Xp,XpTXp,y,1)
 
 
-def supportvector_classifier_for_digit(d,Xp,y):
+def supportvector_classifier_for_digit(d,Xp,y,l = 1):
     yp = []
     for i in y:
         if(i == d):
@@ -96,7 +96,7 @@ def supportvector_classifier_for_digit(d,Xp,y):
     #xt = numpy.hstack((X,numpy.ones((n_train,1))))
     xt = Xp
 
-    clf = LinearSVC(random_state=1, tol=.001,max_iter = 100000)
+    clf = LinearSVC(random_state=1, tol=.001,max_iter = 100000,C = l)
     clf.fit(xt, yp)
     w_opt = clf.coef_.transpose()
 

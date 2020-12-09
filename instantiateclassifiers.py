@@ -12,16 +12,20 @@ nb_classifier = gnb.fit(Xp,y)
 
 """
 
+lam = [100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0]
+
 def msvc():
+
     for i in range(10):
-        wsv = supportvector_classifier_for_digit(i,Xp,y)
-        numpy.savetxt("wsv"+str(i)+".csv",wsv)
+        wsv = supportvector_classifier_for_digit(i,Xp,y,l = 10)
+        numpy.savetxt("wsvr"+str(i)+".csv",wsv)
 
 
 
 def mlrc():
+	
     for i in range(10):
-        lr = linear_classifier_for_digit(i,XpTXpiXT,y)
-        numpy.savetxt("lr"+str(i)+".csv",lr)
+        lr = ridge_classifier_for_digit(i,Xp,XpTXp,y,lam[i])
+        numpy.savetxt("lrr"+str(i)+".csv",lr)
     
 

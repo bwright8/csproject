@@ -14,7 +14,7 @@ nb_classifier = gnb.fit(Xp,y)
 wsvcs = []
 def lsvc():
     for i in range(10):
-        wsvcs.append(numpy.loadtxt("wsv"+str(i)+".csv"))
+        wsvcs.append(numpy.loadtxt("wsvr"+str(i)+".csv"))
 lsvc()
 
 
@@ -22,6 +22,7 @@ wlrcs = []
 def llrc():
     for i in range(10):
         wlrcs.append(numpy.loadtxt("lr"+str(i)+".csv"))
+
 llrc()
 
 def digit_selector(datapoint,digitclassifiers):
@@ -44,7 +45,7 @@ wrongnb = 0
 CAP = n_train
 #CAP = 5000
 clf = load('nn.joblib')
-"""
+
 for i in range(n_test):
     if(digit_selector(Xpt[i],wlrcs) != y_test[i]):
         wronglr += 1
@@ -52,6 +53,17 @@ for i in range(n_test):
         wrongsv += 1
     if(nb_classifier.predict(Xpt[i])!= y_test[i]):
         wrongnb += 1
-"""
+
 yp = clf.predict(Xpt)
 print(accuracy_score(y_test,yp))
+
+for dig in range(10):
+	wrongd = 0
+	totd = 0
+	for i in range(n_test):
+		if(y_test[i] == dig and (Xpt[i]@(wsvcs[dig]) < 0)):
+			wrongd += 1
+		elif(y_test[i] != dig and (Xpt[i]@(wsvcs[dig]) > 0)):
+			wrongd += 1
+		
+	print(dig,wrongd)
