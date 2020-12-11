@@ -17,8 +17,8 @@ lam = [100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0]
 def msvc():
 
     for i in range(10):
-        wsv = supportvector_classifier_for_digit(i,Xp,y,l = 10)
-        numpy.savetxt("wsvr"+str(i)+".csv",wsv)
+        wsv = supportvector_classifier_for_digit(i,Xp,y,l =.1)
+        numpy.savetxt("wsvrr"+str(i)+".csv",wsv)
 
 
 

@@ -1,0 +1,424 @@
+Microsoft Windows [Version 10.0.19042.630]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\bwrig>wsl
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 4.4.0-19041-Microsoft x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Dec  9 16:00:54 EST 2020
+
+  System load:            0.52
+  Usage of /home:         unknown
+  Memory usage:           90%
+  Swap usage:             2%
+  Processes:              7
+  Users logged in:        0
+  IPv4 address for eth1:  172.19.0.1
+  IPv4 address for wifi0: 192.168.1.138
+  IPv6 address for wifi0: 2600:6c64:697f:a860:d417:68b3:5ca8:906
+  IPv6 address for wifi0: 2600:6c64:697f:a860:b9d2:2ec7:b3e1:8512
+
+0 updates can be installed immediately.
+0 of these updates are security updates.
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+This message is shown once a day. To disable it please create the
+/home/bwright/.hushlogin file.
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig$ cd onedrive
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive$ cd documents
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents$ cd github
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github$ cd csproject
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ ls
+'Benjamin Wright.docx'       lr4.csv                   projectreportwright.pdf          updatewright.pdf
+ README.md                   lr5.csv                   projectreportwright.synctex.gz   wrightprojectproposal.docx
+ __pycache__                 lr6.csv                   projectreportwright.tex          wsv0.csv
+ gradientboostresults.txt    lr7.csv                   readme.html                      wsv1.csv
+ howtorunscripts.txt         lr8.csv                   readme_files                     wsv2.csv
+ instantiateclassifiers.py   lr9.csv                   t10k-images-idx3-ubyte           wsv3.csv
+ learnermod.py               main.py                   t10k-images-idx3-ubyte.gz        wsv4.csv
+ learnermodv2.py             model_file.json           t10k-labels-idx1-ubyte           wsv5.csv
+ loadcfs.py                  neural_network.joblib     t10k-labels-idx1-ubyte.gz        wsv6.csv
+ loadcfsv2.py                neurips_2020.sty          train-images-idx3-ubyte          wsv7.csv
+ lr0.csv                     nn.joblib                 train-labels-idx1-ubyte          wsv8.csv
+ lr1.csv                     projectreportwright.aux   update1.docx                     wsv9.csv
+ lr2.csv                     projectreportwright.log   update2.docx                    '~$ightprojectproposal.docx'
+ lr3.csv                     projectreportwright.out   update2.pdf
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+0.9799
+>>> import loadcfsv2
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+0.9799
+>>> print(loadcfsv2.wronglr)
+1762
+>>> print(loadcfsv2.wronglr/10000)
+0.1762
+>>> print(100-loadcfsv2.wronglr/10000*100)
+82.38
+>>> print(loadcfsv2.wrongsv)
+1054
+>>> print(100-loadcfsv2.wrongsv/10000*100)
+89.46000000000001
+>>> dig = 0
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> 892/10000*100
+8.92
+>>> import instantiateclassifiers
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+>>> instantiateclassifiers.mlrc()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/c/Users/bwrig/onedrive/documents/github/csproject/instantiateclassifiers.py", line 28, in mlrc
+    lr = ridge_classifier_for_digit(d,Xp,XpTXp,y,lam[i])
+NameError: name 'd' is not defined
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+^[[A
+>>> instantiateclassifiers.mlrc()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/c/Users/bwrig/onedrive/documents/github/csproject/instantiateclassifiers.py", line 28, in mlrc
+    lr = ridge_classifier_for_digit(i,Xp,XpTXp,y,lam[i])
+NameError: name 'XpTXp' is not defined
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+(785, 785)
+>>> instantiateclassifiers.mlrc()
+>>> import loadcfsv2
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+(785, 785)
+>>> instantiateclassifiers.mlrc()
+>>> import loadcfsv2
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+(785, 785)
+>>> instantiateclassifiers.mlrc()
+>>> import loadcfsv2
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/c/Users/bwrig/onedrive/documents/github/csproject/loadcfsv2.py", line 25
+    print("a")
+             ^
+TabError: inconsistent use of tabs and spaces in indentation
+>>> import loadcfsv2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/c/Users/bwrig/onedrive/documents/github/csproject/loadcfsv2.py", line 25
+    print("a")
+             ^
+TabError: inconsistent use of tabs and spaces in indentation
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/c/Users/bwrig/onedrive/documents/github/csproject/loadcfsv2.py", line 25
+    print("a")
+             ^
+TabError: inconsistent use of tabs and spaces in indentation
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+(785, 785)
+a
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> print(loadcfsv2.wlrcs[0][0])
+1.2012934853526606e-16
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+(785, 785)
+>>> instantiateclassifiers.mlrc()
+>>> import loadcfsv2
+a
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+(785, 785)
+a
+0.9799
+0 980 10000
+1 1135 10000
+2 1032 10000
+3 1010 10000
+4 982 10000
+5 892 10000
+6 958 10000
+7 1028 10000
+8 974 10000
+9 1009 10000
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> exit()
+^[[Abwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+0.9799
+0 980
+1 1135
+2 1032
+3 1010
+4 982
+5 892
+6 958
+7 1028
+8 974
+9 1009
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import loadcfsv2
+0.9799
+0 143
+1 67
+2 227
+3 482
+4 186
+5 234
+6 231
+7 172
+8 2070
+9 736
+>>> print(loadcfsv2.wrongsv)
+1054
+>>> import instantiateclassifiers
+>>> instantiateclassifiers.msvc()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/mnt/c/Users/bwrig/onedrive/documents/github/csproject/instantiateclassifiers.py", line 20, in msvc
+    wsv = supportvector_classifier_for_digit(i,Xp,y,l = 10)
+TypeError: supportvector_classifier_for_digit() got an unexpected keyword argument 'l'
+>>> exit()
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+>>> instantiateclassifiers.msvc()
+
+
+>>>
+>>>
+>>> import loadcfsv2
+0.9799
+0 151
+1 68
+2 233
+3 479
+4 185
+5 237
+6 231
+7 173
+8 2081
+9 744
+>>> #with c = 10 regularization
+>>>
+
+
+Microsoft Windows [Version 10.0.19042.630]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\bwrig>wsl
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig$ cd onedrive
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive$ cd documents
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents$ cd github
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github$ cd csproject
+bwright@LAPTOP-444KFICT:/mnt/c/Users/bwrig/onedrive/documents/github/csproject$ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import instantiateclassifiers
+>>> instantiateclassifiers.msvc()
+>>> import loadcfsv2
+0.9799
+0 125
+1 71
+2 222
+3 477
+4 188
+5 240
+6 226
+7 169
+8 2059
+9 729
+>>> #with c =.1 regularization
+>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
