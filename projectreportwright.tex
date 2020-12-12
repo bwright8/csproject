@@ -86,7 +86,7 @@ Further, the website hosting the data describes that the data from the trainnig 
 
 \section{The Algorithms Used}
 
-The datas are labelled according to the value of a digit the handwriter was instructed to write, making the dataset prime for analysis by supervised learning techniques. The question that was proposed for study was: Can the computer be trained to learn the (label) value of a handwritten digit from its IDX representation? The three algorithms that were used to approach this question were: 1. linear/ridge regression. 2. support vector machines. 3. neural networks. A brief overview of each mehtod is given in the following subsections. 
+The datas are labelled according to the value of a digit the handwriter was instructed to write, making the dataset prime for analysis by supervised learning techniques. The question that was proposed for study was: Can the computer be trained to learn the (label) value of a handwritten digit from its IDX representation? The three algorithms that were used to approach this question were: 1. linear/ridge regression. 2. support vector machines. 3. neural networks. A brief overview of each mehtod is given in the following subsections. Note that the implemented classifiers are saved in the project page at \url{https://github.com/bwright8/csproject}.
 
 \subsection{Linear Regression}
 
@@ -118,13 +118,31 @@ Another clear disadvantage to this model, of course, is it takes lots of computa
 
 \subsection{Linear regression}
 
-A binary, linear classifier was trained on all training data for each digit between 0 and 9. A digit selector then takes an input data and checks which of the ten classifiers assigns the data the highest output norm and predicts the corresponding digit. This process is 82.38 percent accurate on the test data of 10,000 handwritten digits. One might wonder which digits are the hardest to distinguish. Well, it turns out the digit 5 was the easiest to classify with over 91 percent accuracy, and 1 was the hardest to classify with just over 88 percent accuracy. (These figures mean that, for example, given any test data, the classifier could correctly identify whether or not the digit was 5 over 91 percent of the time.)
+A binary, linear classifier was trained on all training data for each digit between 0 and 9. A digit selector then takes an input data and checks which of the ten classifiers assigns the data the highest output norm and predicts the corresponding digit. This process is 82.38 percent accurate on the test data of 10,000 handwritten digits. One might wonder which digits are the hardest to distinguish. Well, it turns out the digit 5 was the easiest to classify with over 91 percent accuracy, and 1 was the hardest to classify with just over 88 percent accuracy. (These figures mean that, for example, given any test data, the classifier could correctly identify whether or not the digit was 5 over 91 percent of the time.) More details can be found in Table 1. \begin{table}
+  \caption{Total Misclassifications on the Test Set of the Digit Classifiers}
+  \label{sample-table}
+  \centering
+  $$\begin{array}{c|c|c|c|c|c|c|c|c|c|c} \mbox{Digit} & 0 & 1 & 2 & 3 &4 & 5 & 6 & 7 & 8 & 9  \\ \hline  \\[-.3cm]
+\mbox{Misclassifications} & 980 & 1135 & 1032 & 1010 & 982 & 892 & 958 & 1028 & 974 & 1009
+
+\end{array}$$
+\end{table}
 
 As for whether this model can be improved by introducing a regularization parameter, the answer strangely appears to be not really. In fact, regularization parameters $1,10,100,10000$ and $10000$ appeared to have no affect on the generalizability of the model (despite the non-regularized classifiers having L2 norms each at least on the order of 10).
 
 \subsection{Support vector machines}
 
-The support vector classifiers performed better than the linear classifiers. The support-vector-digit-selector, formed the same was as the linear-regression-digit selector described above, predicted the correct digit on the test data 89.46 percent of the time (with regularization parameter $\lambda = 1$). The individual digit classifiers ranged between over 79 percent effective (for the digit 8) to over 99 percent effectiveness (for the digit 1). 
+The support vector classifiers performed better than the linear classifiers. The support-vector-digit-selector, formed the same was as the linear-regression-digit selector described above, predicted the correct digit on the test data 89.46 percent of the time (with regularization parameter $\lambda = 1$). The individual digit classifiers ranged between over 79 percent effective (for the digit 8) to over 99 percent effectiveness (for the digit 1). More details can be found in Table 2. \begin{table}
+  \caption{Total Misclassifications on the Test Set of the Digit Classifiers}
+  \label{sample-table}
+  \centering
+  $$\begin{array}{c|c|c|c|c|c|c|c|c|c|c} \mbox{Digit} & 0 & 1 & 2 & 3 &4 & 5 & 6 & 7 & 8 & 9  \\ \hline  \\[-.3cm]
+\mbox{Misclassifications} & 143 & 67 & 227 & 482 & 186 & 234 & 231 & 172 & 2070 & 736  \\ \hline  \\[-.3cm]
+\mbox{False Negatives} & 10 & 22 & 88 & 52 & 60 & 164 & 27 & 84 & 45 & 73  \\ \hline  \\[-.3cm]
+\mbox{False Positives} & 133 & 45 & 139 & 430 & 126 & 70 & 204 & 88 & 2025 & 663 
+
+\end{array}$$
+\end{table}
 
 Again, this model appeared to be relatively immune to changes in the regularization parameter. For example, comparing the above digit classifiers to their counterparts with regularization parameters .1 and 10, misclassifications on the test set changed only by two-tenths of a percent (despite the classifiers having large enough L2 norms to be affected significantly by these regularizations).
 
@@ -134,6 +152,23 @@ The most accurate neural network implemented for this project is a fully-connect
 
 After the model was trained on the full training set of 60000 entries, accuracy (on the testing set) jumped up to 97.99 perecent. The very simple explaination for this jump in effectiveness is that the network learned the patterns of the handwritten digits better with more samples to look at. 
 
+How effective was the classifier when breaking the data down by digit? The confusion matrix appears in Table 3.
+\begin{table}
+  \caption{Confusion Matrix for the Neural Network Classifier}
+  \label{sample-table}
+  \centering
+$$\left[\begin{array}{cccccccccc} 969 &    0  &  3&    1&    0&    3  &  2&    0&    3  &  1\\
+    0& 1123 &   4&    0&    1 &   0 &   3 &   2 &   0 &   2\\
+    0 &   1& 1006 &   5 &   4 &   0 &   1 &   6 &   3 &   0\\
+    0 &   2&    5&  988 &   0 &  10&    1 &   3 &   2 &   2\\
+    0  &  0 &   3  &  0 & 964 &   1&    5  &  0  &  1  &  9\\\
+    0 &   1  &  0  &  2  &  1 & 869 &   5 &   0  &  6 &   2\\
+    3   & 2 &   1&    0  &  3  &  3 & 940 &   0  &  2 &   2\\
+    1   & 1 &   4 &   3&    2 &   1 &   0& 1008 &   2 &   3\\
+    5   & 5 &   6 &   4  &  0  &  3 &   1  &  3 & 949  &  5\\
+    2  &  0 &   0 &   7 &   7  &  2  &  0 &   6 &   6 & 983 \end{array} \right] $$
+
+\end{table}
 
 \section{Discussion} Based on the nonlinear natures of the data (most digits do not have linear boundaries), it is not surprising that the neural network performed best on classifying the test data. On the other hand, the linear shape of the digit 1 may account for the success the support vector classifier had at identifying this digit, but then why did linear regression fail to perform as well on the digit 1? Perhaps this has to do with the fact that there are multiple ways of writing the digit 1 - for example, as a simple straight segment or with a hat and shoes as it appears here in type. The rigitdity of SVMs in the face of these outliers could explain the difference in performance.
 
@@ -142,237 +177,34 @@ Although, is it fair to compare these three methods simply by the metric of accu
 Another question raised by this project is: Why is the linear predictor basically immune to a standard regularization? The answer might have to do with the fact that prediction is based on the norm of the prediction vectors formed by applying the matricies for each digit classifer to a datapoint. Regularizing changes the norms of the prediction vectors - but often not drastically enough to affect the ordering of the prediction vectors by their norms. Maybe instead, the predictor should select the digit whose corresponding prediction vector closest to 1 in norm instead of the vector in the correct hyperplane with the largest norm.
 
 
-\section{Conclusion} Overall, all three of the above methods were effective at classifying the numerical value of a handwritten digit. On smaller training sets, performances of the three methods were comparable, but on the full training set of 60000 data points, the neural network gives predictions with the highest accuracy. Though, improvement of the other two prediction algoritms, making better use of the binary digit classifiers, may be possible.
-
-\subsubsection{Headings: third level}
-
-Third-level headings should be in 10-point type.
-
-\paragraph{Paragraphs}
-
-There is also a \verb+\paragraph+ command available, which sets the heading in
-bold, flush left, and inline with the text, with the heading followed by 1\,em
-of space.
-
-\section{Citations, figures, tables, references}
-\label{others}
-
-These instructions apply to everyone.
-
-\subsection{Citations within the text}
-
-The \verb+natbib+ package will be loaded for you by default.  Citations may be
-author/year or numeric, as long as you maintain internal consistency.  As to the
-format of the references themselves, any style is acceptable as long as it is
-used consistently.
-
-The documentation for \verb+natbib+ may be found at
-\begin{center}
-  \url{http://mirrors.ctan.org/macros/latex/contrib/natbib/natnotes.pdf}
-\end{center}
-Of note is the command \verb+\citet+, which produces citations appropriate for
-use in inline text.  For example,
-\begin{verbatim}
-   \citet{hasselmo} investigated\dots
-\end{verbatim}
-produces
-\begin{quote}
-  Hasselmo, et al.\ (1995) investigated\dots
-\end{quote}
-
-If you wish to load the \verb+natbib+ package with options, you may add the
-following before loading the \verb+neurips_2020+ package:
-\begin{verbatim}
-   \PassOptionsToPackage{options}{natbib}
-\end{verbatim}
-
-If \verb+natbib+ clashes with another package you load, you can add the optional
-argument \verb+nonatbib+ when loading the style file:
-\begin{verbatim}
-   \usepackage[nonatbib]{neurips_2020}
-\end{verbatim}
-
-As submission is double blind, refer to your own published work in the third
-person. That is, use ``In the previous work of Jones et al.\ [4],'' not ``In our
-previous work [4].'' If you cite your other papers that are not widely available
-(e.g., a journal paper under review), use anonymous author names in the
-citation, e.g., an author of the form ``A.\ Anonymous.''
-
-\subsection{Footnotes}
-
-Footnotes should be used sparingly.  If you do require a footnote, indicate
-footnotes with a number\footnote{Sample of the first footnote.} in the
-text. Place the footnotes at the bottom of the page on which they appear.
-Precede the footnote with a horizontal rule of 2~inches (12~picas).
-
-Note that footnotes are properly typeset \emph{after} punctuation
-marks.\footnote{As in this example.}
-
-\subsection{Figures}
-
-\begin{figure}
-  \centering
-  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-  \caption{Sample figure caption.}
-\end{figure}
-
-All artwork must be neat, clean, and legible. Lines should be dark enough for
-purposes of reproduction. The figure number and caption always appear after the
-figure. Place one line space before the figure caption and one line space after
-the figure. The figure caption should be lower case (except for first word and
-proper nouns); figures are numbered consecutively.
-
-You may use color figures.  However, it is best for the figure captions and the
-paper body to be legible if the paper is printed in either black/white or in
-color.
-
-\subsection{Tables}
-
-All tables must be centered, neat, clean and legible.  The table number and
-title always appear before the table.  See Table~\ref{sample-table}.
-
-Place one line space before the table title, one line space after the
-table title, and one line space after the table. The table title must
-be lower case (except for first word and proper nouns); tables are
-numbered consecutively.
-
-Note that publication-quality tables \emph{do not contain vertical rules.} We
-strongly suggest the use of the \verb+booktabs+ package, which allows for
-typesetting high-quality, professional tables:
-\begin{center}
-  \url{https://www.ctan.org/pkg/booktabs}
-\end{center}
-This package was used to typeset Table~\ref{sample-table}.
-
+\section{Conclusion} Look one more time at the effectiveness of each algorithm on the test set, shown in Table 4. 
 \begin{table}
-  \caption{Sample table title}
+  \caption{Percent Accuracy of Prediction Models on Test Set}
   \label{sample-table}
   \centering
   \begin{tabular}{lll}
     \toprule
-    \multicolumn{2}{c}{Part}                   \\
-    \cmidrule(r){1-2}
-    Name     & Description     & Size ($\mu$m) \\
+    Linear Regression     & SVM     & Neural Network \\
     \midrule
-    Dendrite & Input terminal  & $\sim$100     \\
-    Axon     & Output terminal & $\sim$10      \\
-    Soma     & Cell body       & up to $10^6$  \\
+    82.32 & 89.46  & 97.99    \\
+    
     \bottomrule
   \end{tabular}
 \end{table}
 
-\section{Final instructions}
-
-Do not change any aspects of the formatting parameters in the style files.  In
-particular, do not modify the width or length of the rectangle the text should
-fit into, and do not change font sizes (except perhaps in the
-\textbf{References} section; see below). Please note that pages should be
-numbered.
-
-\section{Preparing PDF files}
-
-Please prepare submission files with paper size ``US Letter,'' and not, for
-example, ``A4.''
-
-Fonts were the main cause of problems in the past years. Your PDF file must only
-contain Type 1 or Embedded TrueType fonts. Here are a few instructions to
-achieve this.
-
-\begin{itemize}
-
-\item You should directly generate PDF files using \verb+pdflatex+.
-
-\item You can check which fonts a PDF files uses.  In Acrobat Reader, select the
-  menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
-  also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
-  available out-of-the-box on most Linux machines.
-
-\item The IEEE has recommendations for generating PDF files whose fonts are also
-  acceptable for NeurIPS. Please see
-  \url{http://www.emfield.org/icuwb2010/downloads/IEEE-PDF-SpecV32.pdf}
-
-\item \verb+xfig+ "patterned" shapes are implemented with bitmap fonts.  Use
-  "solid" shapes instead.
-
-\item The \verb+\bbold+ package almost always uses bitmap fonts.  You should use
-  the equivalent AMS Fonts:
-\begin{verbatim}
-   \usepackage{amsfonts}
-\end{verbatim}
-followed by, e.g., \verb+\mathbb{R}+, \verb+\mathbb{N}+, or \verb+\mathbb{C}+
-for $\mathbb{R}$, $\mathbb{N}$ or $\mathbb{C}$.  You can also use the following
-workaround for reals, natural and complex:
-\begin{verbatim}
-   \newcommand{\RR}{I\!\!R} %real numbers
-   \newcommand{\Nat}{I\!\!N} %natural numbers
-   \newcommand{\CC}{I\!\!\!\!C} %complex numbers
-\end{verbatim}
-Note that \verb+amsfonts+ is automatically loaded by the \verb+amssymb+ package.
-
-\end{itemize}
-
-If your file contains type 3 fonts or non embedded TrueType fonts, we will ask
-you to fix it.
-
-\subsection{Margins in \LaTeX{}}
-
-Most of the margin problems come from figures positioned by hand using
-\verb+\special+ or other commands. We suggest using the command
-\verb+\includegraphics+ from the \verb+graphicx+ package. Always specify the
-figure width as a multiple of the line width as in the example below:
-\begin{verbatim}
-   \usepackage[pdftex]{graphicx} ...
-   \includegraphics[width=0.8\linewidth]{myfile.pdf}
-\end{verbatim}
-See Section 4.4 in the graphics bundle documentation
-(\url{http://mirrors.ctan.org/macros/latex/required/graphics/grfguide.pdf})
-
-A number of width problems arise when \LaTeX{} cannot properly hyphenate a
-line. Please give LaTeX hyphenation hints using the \verb+\-+ command when
-necessary.
+Overall, all three of the above methods were effective at classifying the numerical value of a handwritten digit. On smaller training sets, performances of the three methods were comparable, but on the full training set of 60000 data points, the neural network gives predictions with the highest accuracy. Though, improvement of the other two prediction algoritms, making better use of the binary digit classifiers, may be possible.
 
 
-\section*{Broader Impact}
-
-Authors are required to include a statement of the broader impact of their work, including its ethical aspects and future societal consequences. 
-Authors should discuss both positive and negative outcomes, if any. For instance, authors should discuss a) 
-who may benefit from this research, b) who may be put at disadvantage from this research, c) what are the consequences of failure of the system, and d) whether the task/method leverages
-biases in the data. If authors believe this is not applicable to them, authors can simply state this.
-
-Use unnumbered first level headings for this section, which should go at the end of the paper. {\bf Note that this section does not count towards the eight pages of content that are allowed.}
-
-\begin{ack}
-Use unnumbered first level headings for the acknowledgments. All acknowledgments
-go at the end of the paper before the list of references. Moreover, you are required to declare 
-funding (financial activities supporting the submitted work) and competing interests (related financial activities outside the submitted work). 
-More information about this disclosure can be found at: \url{https://neurips.cc/Conferences/2020/PaperInformation/FundingDisclosure}.
-
-
-Do {\bf not} include this section in the anonymized submission, only in the final paper. You can use the \texttt{ack} environment provided in the style file to autmoatically hide this section in the anonymized submission.
-\end{ack}
 
 \section*{References}
-
-References follow the acknowledgments. Use unnumbered first-level heading for
-the references. Any choice of citation style is acceptable as long as you are
-consistent. It is permissible to reduce the font size to \verb+small+ (9 point)
-when listing the references.
-{\bf Note that the Reference section does not count towards the eight pages of content that are allowed.}
-\medskip
-
 \small
 
-[1] Alexander, J.A.\ \& Mozer, M.C.\ (1995) Template-based algorithms for
-connectionist rule extraction. In G.\ Tesauro, D.S.\ Touretzky and T.K.\ Leen
-(eds.), {\it Advances in Neural Information Processing Systems 7},
-pp.\ 609--616. Cambridge, MA: MIT Press.
+[1] Brownlee, J., 2020. Gentle Introduction To The Adam Optimization Algorithm For Deep Learning. [online] Machine Learning Mastery. Available at: <https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/> [Accessed 12 December 2020].
 
-[2] Bower, J.M.\ \& Beeman, D.\ (1995) {\it The Book of GENESIS: Exploring
-  Realistic Neural Models with the GEneral NEural SImulation System.}  New York:
-TELOS/Springer--Verlag.
+[2] Fan, R., Chang, K., Hsieh, C., Wang, X. and Lin, C., 2020. [online] Csie.ntu.edu.tw. Available at: <https://www.csie.ntu.edu.tw/~cjlin/papers/liblinear.pdf> [Accessed 12 December 2020]. 
 
-[3] Hasselmo, M.E., Schnell, E.\ \& Barkai, E.\ (1995) Dynamics of learning and
-recall at excitatory recurrent synapses and cholinergic modulation in rat
-hippocampal region CA3. {\it Journal of Neuroscience} {\bf 15}(7):5249-5262.
+[3] Scikit-learn.org. 2020. Sklearn.Neural\_Network.Mlpclassifier — Scikit-Learn 0.23.2 Documentation. [online] Available at: <https://scikit-learn.org/stable/modules/generated/sklearn.neural\_network.MLPClassifier.html> [Accessed 12 December 2020].
+
+[4] Yann.lecun.com. 2020. MNIST Handwritten Digit Database, Yann Lecun, Corinna Cortes And Chris Burges. [online] Available at: <http://yann.lecun.com/exdb/mnist/> [Accessed 12 December 2020].
 
 \end{document}
